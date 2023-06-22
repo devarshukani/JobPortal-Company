@@ -1,0 +1,157 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/TVProfileTitle"
+        android:text="Edit Profile"
+        android:textSize="28sp"
+        android:textColor="@color/darkgray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:layout_marginBottom="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_display_bold"
+                    android:text="Company Details"
+                    android:textColor="@color/darkgray"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/IVSaveCompanyDetails"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_save"
+                    android:background="@drawable/button_secondary_background"
+                    android:padding="7dp"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textStyle="bold"
+                android:text="Company Name"
+                android:textColor="@color/darkgray"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/ETCompanyName"
+                android:hint="Enter Company Name"
+                android:inputType="text"
+                android:background="@drawable/edit_text_background"
+                android:padding="15dp"
+                android:textColorHint="@color/darkgray"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textStyle="bold"
+                android:text="Company Tagline"
+                android:textColor="@color/darkgray"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/ETCompanyTagline"
+                android:hint="Enter Company Tagline"
+                android:inputType="text"
+                android:background="@drawable/edit_text_background"
+                android:padding="15dp"
+                android:textColorHint="@color/darkgray"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textStyle="bold"
+                android:text="Company Employee Count"
+                android:textColor="@color/darkgray"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp" />
+
+
+            <EditText
+                android:id="@+id/ETCompanyEmployeeCount"
+                android:hint="Enter Approx. Employee Count"
+                android:inputType="number"
+                android:background="@drawable/edit_text_background"
+                android:padding="15dp"
+                android:textColorHint="@color/darkgray"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:maxLength="15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textStyle="bold"
+                android:text="Comany Description"
+                android:textColor="@color/darkgray"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/ETCompanyDescription"
+                android:hint="Enter Company Description"
+                android:inputType="textMultiLine"
+                android:background="@drawable/edit_text_background"
+                android:padding="15dp"
+                android:textColorHint="@color/darkgray"
+                android:textSize="18sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

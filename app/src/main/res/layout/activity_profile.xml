@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:id="@+id/TVProfileTitle"
+            android:text="Profile"
+            android:textSize="28sp"
+            android:textColor="@color/darkgray"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/sf_pro_display_bold"/>
+
+        <ImageView
+            android:id="@+id/IVEditProfile"
+            android:text="Profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_edit"
+            android:background="@drawable/button_secondary_background"
+            android:padding="7dp"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_profile_photo" />
+
+    <TextView
+        android:id="@+id/TVEmailOrUserName"
+        android:text="User Name "
+        android:textSize="22sp"
+        android:textColor="@color/darkgray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textStyle="bold"/>
+
+
+
+
+    <!-- Logout button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNlogoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_secondary_background"
+        android:elevation="0dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:padding="18dp"
+        android:stateListAnimator="@null"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="#CD2B49"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

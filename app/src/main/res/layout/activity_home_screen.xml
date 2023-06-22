@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/IVCompanyProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_profile_photo"
+        android:layout_gravity="end"/>
+
+    <EditText
+        android:id="@+id/ETHomeSearchField"
+        android:hint="Search"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_background"
+        android:padding="15dp"
+        android:textColorHint="@color/darkgray"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawableRight="@drawable/ic_filter"/>
+
+</LinearLayout>

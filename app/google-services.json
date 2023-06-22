@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1096546919794",
+    "project_id": "bigstride-jobportal-27e97",
+    "storage_bucket": "bigstride-jobportal-27e97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096546919794:android:75f68ac97d7a27d8daa9eb",
+        "android_client_info": {
+          "package_name": "com.bigstride.jobportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096546919794-5kreaa05b5bv1e6jia92qke6lpvs7uk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyP98HFQ45WNWqY0_PZxgQUvs7erfwEiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096546919794-5kreaa05b5bv1e6jia92qke6lpvs7uk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096546919794:android:e2e860c8a4bbdb65daa9eb",
+        "android_client_info": {
+          "package_name": "com.bigstride.jobportal_company"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096546919794-5kreaa05b5bv1e6jia92qke6lpvs7uk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyP98HFQ45WNWqY0_PZxgQUvs7erfwEiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096546919794-5kreaa05b5bv1e6jia92qke6lpvs7uk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
