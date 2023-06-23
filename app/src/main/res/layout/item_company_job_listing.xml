@@ -1,0 +1,82 @@
+<!-- item_education_details.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/button_secondary_background"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:id="@+id/jobPositionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"/>
+
+    <TextView
+        android:id="@+id/minimumQualificationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginBottom="4dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_regular"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Date : "
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/sf_pro_display_regular" />
+
+            <TextView
+                android:id="@+id/startingDateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:fontFamily="@font/sf_pro_display_regular"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apply Before :"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/sf_pro_display_regular"/>
+
+            <TextView
+                android:id="@+id/applyBeforeDateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:fontFamily="@font/sf_pro_display_regular"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

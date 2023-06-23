@@ -14,22 +14,25 @@
         android:theme="@style/Theme.JobPortalCompany"
         tools:targetApi="31">
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".Activity.JobListingDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".Activity.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeScreenActivity"
+            android:name=".Activity.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activity.HomeScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

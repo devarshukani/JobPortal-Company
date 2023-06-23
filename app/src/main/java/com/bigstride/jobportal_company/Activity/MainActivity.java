@@ -1,4 +1,4 @@
-package com.bigstride.jobportal_company;
+package com.bigstride.jobportal_company.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+
+import com.bigstride.jobportal_company.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.bigstride.jobportal_company;
+package com.bigstride.jobportal_company.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bigstride.jobportal_company.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity extends AppCompatActivity {

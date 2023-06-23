@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TVJobPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="Your Job Listing"
+        android:textColor="@color/darkgray"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/TVStartingDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="Your Job Listing"
+        android:textColor="@color/darkgray"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/TVApplyBeforeDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="Your Job Listing"
+        android:textColor="@color/darkgray"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/TVMinimumQualification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="Your Job Listing"
+        android:textColor="@color/darkgray"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/TVJobRequirement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="Your Job Listing"
+        android:textColor="@color/darkgray"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/TVJobDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="Your Job Listing"
+        android:textColor="@color/darkgray"
+        android:textSize="24sp" />
+
+
+
+
+
+</LinearLayout>
