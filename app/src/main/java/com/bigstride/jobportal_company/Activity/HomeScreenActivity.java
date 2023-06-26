@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bigstride.jobportal_company.Adapter.CompanyJobListingAdapter;
+import com.bigstride.jobportal_company.Adapter.JobTypeSpinnerAdapter;
 import com.bigstride.jobportal_company.Adapter.MinimumQualificationSpinnerAdapter;
 import com.bigstride.jobportal_company.Model.CompanyJobListingModel;
 import com.bigstride.jobportal_company.R;
@@ -44,7 +45,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     ImageView IVCompanyProfile;
     FloatingActionButton FABAddJobListing;
-    Spinner ETMinimumQualificationRequired;
+    Spinner ETMinimumQualificationRequired, ETJobType;
 
     RecyclerView RVCompanyJobListings;
     private CompanyJobListingAdapter companyJobListingAdapter;
@@ -109,15 +110,20 @@ public class HomeScreenActivity extends AppCompatActivity {
         EditText ETJobPosition = bottomSheetView.findViewById(R.id.ETJobPosition);
         EditText ETStartingDate = bottomSheetView.findViewById(R.id.ETStartingDate);
         EditText ETApplyBeforeDate = bottomSheetView.findViewById(R.id.ETApplyBeforeDate);
-
+        EditText ETExperienceRequired = bottomSheetView.findViewById(R.id.ETExperienceRequired);
         EditText ETJobRequirement = bottomSheetView.findViewById(R.id.ETJobRequirement);
         EditText ETJobDescription = bottomSheetView.findViewById(R.id.ETJobDescription);
 
         ETMinimumQualificationRequired = bottomSheetView.findViewById(R.id.ETMinimumQualificationRequired);
+        ETJobType = bottomSheetDialog.findViewById(R.id.ETJobType);
 
         List<String> qualificationList = Arrays.asList("10th Grade", "12th Grade", "Diploma Degree","Bachelor Degree", "Master Degree", "Doctorate Degree");
         MinimumQualificationSpinnerAdapter adapter = new MinimumQualificationSpinnerAdapter(HomeScreenActivity.this, R.layout.item_minimum_qualification_spinner, qualificationList);
         ETMinimumQualificationRequired.setAdapter(adapter);
+
+        List<String> jobTypeList = Arrays.asList("Full Time", "Part Time", "Contract base","Internship");
+        JobTypeSpinnerAdapter adapterJT = new JobTypeSpinnerAdapter(HomeScreenActivity.this, R.layout.item_job_type_spinner, jobTypeList);
+        ETJobType.setAdapter(adapterJT);
 
         ETStartingDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +192,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 String startingDate = ETStartingDate.getText().toString().trim();
                 String applyBeforeDate = ETApplyBeforeDate.getText().toString().trim();
                 String minimumQualificationRequired = ETMinimumQualificationRequired.getSelectedItem().toString().trim();
+                String jobType = ETJobType.getSelectedItem().toString().trim();
+                String experienceRequired = ETExperienceRequired.getText().toString().trim();
                 String jobRequirement = ETJobRequirement.getText().toString().trim();
                 String jobDescription = ETJobDescription.getText().toString().trim();
 
@@ -197,6 +205,9 @@ public class HomeScreenActivity extends AppCompatActivity {
                 }
                 else if (applyBeforeDate.isEmpty()) {
                     ETApplyBeforeDate.setError("Apply Before Date cannot be Empty");
+                }
+                else if (experienceRequired.isEmpty()){
+                    ETExperienceRequired.setError("Experience Requirement cannot be Empty");
                 }
                 else if (jobRequirement.isEmpty()){
                     ETJobRequirement.setError("Job Requirement cannot be Empty");
@@ -225,6 +236,9 @@ public class HomeScreenActivity extends AppCompatActivity {
                                         userEducationDetails.put("minimum_qualification_required", minimumQualificationRequired);
                                         userEducationDetails.put("job_requirement", jobRequirement);
                                         userEducationDetails.put("job_description", jobDescription);
+                                        userEducationDetails.put("experience_required", experienceRequired);
+                                        userEducationDetails.put("job_type", jobType);
+
 
                                         db.collection("JobListing")
                                                 .add(userEducationDetails)
@@ -298,8 +312,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                             String minimum_qualification_required = document.getString("minimum_qualification_required");
                             String job_requirement = document.getString("job_requirement");
                             String job_description = document.getString("job_description");
+                            String job_type = document.getString("job_type");
+                            String experience_required = document.getString("experience_required");
 
-                            CompanyJobListingModel joblist = new CompanyJobListingModel(job_position, starting_date, apply_before_date, minimum_qualification_required, job_requirement,job_description, documentID);
+                            CompanyJobListingModel joblist = new CompanyJobListingModel(job_position, starting_date, apply_before_date, minimum_qualification_required, job_requirement,job_description,job_type,experience_required,  documentID);
                             companyJobListingList.add(joblist);
                         }
                         companyJobListingAdapter.notifyDataSetChanged();
@@ -324,6 +340,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                 intent.putExtra("minimum_qualification_required", jl.getMinimum_qualification_required());
                 intent.putExtra("job_requirement", jl.getJob_requirement());
                 intent.putExtra("job_description", jl.getJob_description());
+                intent.putExtra("job_type", jl.getJob_type());
+                intent.putExtra("experience_required", jl.getExperience_required());
                 startActivity(intent);
             }
         });

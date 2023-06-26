@@ -7,9 +7,11 @@ public class CompanyJobListingModel {
     String minimum_qualification_required;
     String job_requirement;
     String job_description;
+    String job_type;
+    String experience_required;
     String document_id;
 
-    public CompanyJobListingModel(String job_position, String starting_date, String apply_before_date, String minimum_qualification_required, String job_requirement, String job_description, String document_id) {
+    public CompanyJobListingModel(String job_position, String starting_date, String apply_before_date, String minimum_qualification_required, String job_requirement, String job_description, String job_type, String experience_required, String document_id) {
         this.job_position = job_position;
         this.starting_date = starting_date;
         this.apply_before_date = apply_before_date;
@@ -17,6 +19,8 @@ public class CompanyJobListingModel {
         this.job_requirement = job_requirement;
         this.job_description = job_description;
         this.document_id = document_id;
+        this.job_type = job_type;
+        this.experience_required = experience_required;
     }
 
     public String getJob_position() {
@@ -47,4 +51,11 @@ public class CompanyJobListingModel {
         return document_id;
     }
 
+    public String getJob_type() {
+        return job_type;
+    }
+
+    public String getExperience_required() {
+        return experience_required;
+    }
 }
