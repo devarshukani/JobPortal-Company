@@ -9,13 +9,16 @@ import android.widget.Toast;
 
 import com.bigstride.jobportal_company.Model.CompanyJobListingModel;
 import com.bigstride.jobportal_company.R;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class JobListingDetailActivity extends AppCompatActivity {
 
-    TextView TVJobPosition, TVStartingDate, TVApplyBeforeDate, TVMinimumQualification, TVJobRequirement, TVJobDescription, TVJobType, TVExperienceRequired, TVRequiredSkills;
+    TextView TVJobPosition, TVStartingDate, TVApplyBeforeDate, TVMinimumQualification, TVJobRequirement, TVJobDescription, TVJobType, TVExperienceRequired;
+    ChipGroup TVRequiredSkills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,15 @@ public class JobListingDetailActivity extends AppCompatActivity {
         TVExperienceRequired = findViewById(R.id.TVExperienceRequired);
         TVRequiredSkills = findViewById(R.id.TVRequiredSkills);
 
+        for (String skill : required_skills) {
+            Chip chip = new Chip(this);
+            chip.setText(skill);
+            chip.setClickable(false); // Disable click for display purposes
+            chip.setCheckable(false); // Disable check for display purposes
+            chip.setBackgroundResource(R.drawable.button_secondary_background);
+            TVRequiredSkills.addView(chip);
+        }
+
         TVJobPosition.setText(job_position);
         TVStartingDate.setText(starting_date);
         TVApplyBeforeDate.setText(apply_before_date);
@@ -49,8 +61,7 @@ public class JobListingDetailActivity extends AppCompatActivity {
         TVJobRequirement.setText(job_requirement);
         TVJobDescription.setText(job_description);
         TVJobType.setText(job_type);
-        TVExperienceRequired.setText(experience_required);
-        TVRequiredSkills.setText(required_skills.toString());
+        TVExperienceRequired.setText(experience_required.equals("1") || experience_required.equals("0") ? experience_required +" Year": experience_required +" Years");
 
 
 

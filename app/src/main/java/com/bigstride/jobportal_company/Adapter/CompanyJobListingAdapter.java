@@ -48,7 +48,6 @@ public class CompanyJobListingAdapter extends RecyclerView.Adapter<CompanyJobLis
         CompanyJobListingModel jobListing = companyJobListingList.get(position);
 
         holder.jobPositionTextView.setText(jobListing.getJob_position());
-        holder.minimumQualificationTextView.setText(jobListing.getMinimum_qualification_required());
         holder.startingDateTextView.setText(jobListing.getStarting_date());
         holder.applyBeforeDateTextView.setText(jobListing.getApply_before_date());
     }
@@ -60,14 +59,12 @@ public class CompanyJobListingAdapter extends RecyclerView.Adapter<CompanyJobLis
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView jobPositionTextView;
-        TextView minimumQualificationTextView;
         TextView startingDateTextView;
         TextView applyBeforeDateTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             jobPositionTextView = itemView.findViewById(R.id.jobPositionTextView);
-            minimumQualificationTextView = itemView.findViewById(R.id.minimumQualificationTextView);
             startingDateTextView = itemView.findViewById(R.id.startingDateTextView);
             applyBeforeDateTextView = itemView.findViewById(R.id.applyBeforeDateTextView);
 

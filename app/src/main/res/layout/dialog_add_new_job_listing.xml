@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_pro_display_regular"
                     android:textStyle="bold"
-                    android:text="Starting Date"
+                    android:text="Joining Date"
                     android:textColor="@color/darkgray"
                     android:layout_marginTop="16dp"
                     android:textSize="18sp" />
@@ -215,7 +215,7 @@
         <EditText
             android:id="@+id/ETJobRequirement"
             android:hint="Enter Job Requirement"
-            android:inputType="textAutoComplete"
+            android:inputType="textMultiLine"
             android:background="@drawable/edit_text_background"
             android:padding="15dp"
             android:textColorHint="@color/darkgray"
