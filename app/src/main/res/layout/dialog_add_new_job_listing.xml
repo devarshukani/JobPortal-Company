@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,11 +128,9 @@
 
         <Spinner
             android:id="@+id/ETMinimumQualificationRequired"
-            android:inputType="text"
             android:background="@drawable/edit_text_background"
             android:padding="15dp"
             android:textColorHint="@color/darkgray"
-            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_regular">
@@ -149,11 +148,9 @@
 
         <Spinner
             android:id="@+id/ETJobType"
-            android:inputType="text"
             android:background="@drawable/edit_text_background"
             android:padding="15dp"
             android:textColorHint="@color/darkgray"
-            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_regular">
@@ -181,6 +178,29 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_regular"/>
 
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textStyle="bold"
+            android:text="Required Skills"
+            android:textColor="@color/darkgray"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/skillsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -245,5 +265,5 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
 

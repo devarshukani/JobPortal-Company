@@ -15,7 +15,7 @@ import java.util.List;
 
 public class JobListingDetailActivity extends AppCompatActivity {
 
-    TextView TVJobPosition, TVStartingDate, TVApplyBeforeDate, TVMinimumQualification, TVJobRequirement, TVJobDescription, TVJobType, TVExperienceRequired;
+    TextView TVJobPosition, TVStartingDate, TVApplyBeforeDate, TVMinimumQualification, TVJobRequirement, TVJobDescription, TVJobType, TVExperienceRequired, TVRequiredSkills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class JobListingDetailActivity extends AppCompatActivity {
         String job_description = getIntent().getStringExtra("job_description");
         String job_type = getIntent().getStringExtra("job_type");
         String experience_required = getIntent().getStringExtra("experience_required");
+        ArrayList<String> required_skills = getIntent().getStringArrayListExtra("required_skills");
 
         TVJobPosition = findViewById(R.id.TVJobPosition);
         TVStartingDate = findViewById(R.id.TVStartingDate);
@@ -39,6 +40,7 @@ public class JobListingDetailActivity extends AppCompatActivity {
         TVJobDescription = findViewById(R.id.TVJobDescription);
         TVJobType = findViewById(R.id.TVJobType);
         TVExperienceRequired = findViewById(R.id.TVExperienceRequired);
+        TVRequiredSkills = findViewById(R.id.TVRequiredSkills);
 
         TVJobPosition.setText(job_position);
         TVStartingDate.setText(starting_date);
@@ -48,6 +50,7 @@ public class JobListingDetailActivity extends AppCompatActivity {
         TVJobDescription.setText(job_description);
         TVJobType.setText(job_type);
         TVExperienceRequired.setText(experience_required);
+        TVRequiredSkills.setText(required_skills.toString());
 
 
 

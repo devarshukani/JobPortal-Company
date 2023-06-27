@@ -9,6 +9,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,13 +22,18 @@ import android.widget.Toast;
 import com.bigstride.jobportal_company.Adapter.CompanyJobListingAdapter;
 import com.bigstride.jobportal_company.Adapter.JobTypeSpinnerAdapter;
 import com.bigstride.jobportal_company.Adapter.MinimumQualificationSpinnerAdapter;
+import com.bigstride.jobportal_company.Adapter.SkillsAdapter;
 import com.bigstride.jobportal_company.Model.CompanyJobListingModel;
+import com.bigstride.jobportal_company.Model.SkillsModel;
 import com.bigstride.jobportal_company.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -50,6 +56,15 @@ public class HomeScreenActivity extends AppCompatActivity {
     RecyclerView RVCompanyJobListings;
     private CompanyJobListingAdapter companyJobListingAdapter;
     private List<CompanyJobListingModel> companyJobListingList;
+
+    private List<SkillsModel> skills;
+    private List<String> selectedSkills;
+    private List<String> allSelectedSkills;
+    private SkillsAdapter skillsAdapter;
+
+
+    private RecyclerView skillsRecyclerView;
+    private ChipGroup chipGroup;
 
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -116,6 +131,12 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         ETMinimumQualificationRequired = bottomSheetView.findViewById(R.id.ETMinimumQualificationRequired);
         ETJobType = bottomSheetDialog.findViewById(R.id.ETJobType);
+
+        skillsRecyclerView = bottomSheetView.findViewById(R.id.skillsRecyclerView);
+        chipGroup = bottomSheetView.findViewById(R.id.chipGroup);
+
+
+        // -----------------------------------------------------------------------------------------
 
         List<String> qualificationList = Arrays.asList("10th Grade", "12th Grade", "Diploma Degree","Bachelor Degree", "Master Degree", "Doctorate Degree");
         MinimumQualificationSpinnerAdapter adapter = new MinimumQualificationSpinnerAdapter(HomeScreenActivity.this, R.layout.item_minimum_qualification_spinner, qualificationList);
@@ -185,6 +206,36 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
 
+
+        skills = new ArrayList<>();
+        selectedSkills = new ArrayList<>();
+        allSelectedSkills = new ArrayList<>();
+        skillsAdapter = new SkillsAdapter(skills, selectedSkills, chipGroup);
+        skillsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        skillsRecyclerView.setAdapter(skillsAdapter);
+
+        // Load skills from Firestore
+        loadSkills();
+
+        // Set up ChipGroup for displaying selected skills
+        ChipGroup chipGroup = bottomSheetView.findViewById(R.id.chipGroup);
+        chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            Chip chip = findViewById(checkedId);
+            if (chip != null) {
+                String skillName = chip.getText().toString();
+                if (chip.isChecked()) {
+                    allSelectedSkills.add(skillName);
+                } else {
+                    allSelectedSkills.remove(skillName);
+                }
+            }
+        });
+
+
+
+
+
+
         BTNSaveJobListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -239,27 +290,22 @@ public class HomeScreenActivity extends AppCompatActivity {
                                         userEducationDetails.put("experience_required", experienceRequired);
                                         userEducationDetails.put("job_type", jobType);
 
-
                                         db.collection("JobListing")
                                                 .add(userEducationDetails)
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                    @Override
-                                                    public void onSuccess(DocumentReference documentReference) {
+                                                .addOnSuccessListener(documentReference -> {
+                                                    String jobListingId = documentReference.getId();
 
-                                                        Toast.makeText(HomeScreenActivity.this, "Job Listing Saved Successfully", Toast.LENGTH_SHORT).show();
+                                                    addSkillsToFirebase(jobListingId);
 
-                                                        loadJobListingData();
+                                                    loadJobListingData();
 
-                                                        bottomSheetDialog.hide();
-                                                    }
+                                                    bottomSheetDialog.hide();
                                                 })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.w("Error", "Error adding document", e);
-                                                        Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                                                    }
+                                                .addOnFailureListener(e -> {
+                                                    Log.w("Error", "Error adding document", e);
+                                                    Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                                                 });
+
 
 
 
@@ -276,8 +322,6 @@ public class HomeScreenActivity extends AppCompatActivity {
                                     Log.w("Error", "Error getting document", e);
                                 }
                             });
-
-
 
 
 
@@ -314,8 +358,23 @@ public class HomeScreenActivity extends AppCompatActivity {
                             String job_description = document.getString("job_description");
                             String job_type = document.getString("job_type");
                             String experience_required = document.getString("experience_required");
+                            ArrayList<String> required_skills = new ArrayList<>();
 
-                            CompanyJobListingModel joblist = new CompanyJobListingModel(job_position, starting_date, apply_before_date, minimum_qualification_required, job_requirement,job_description,job_type,experience_required,  documentID);
+                            CollectionReference skillsCollectionRef = document.getReference().collection("RequiredSkills");
+
+                            skillsCollectionRef.get()
+                                    .addOnSuccessListener(querySnapshot -> {
+
+                                        for (QueryDocumentSnapshot skillDocument : querySnapshot) {
+                                            String skillName = skillDocument.getString("skill_name");
+                                            required_skills.add(skillName);
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Log.e("Error", "Error fetching skill details", e);
+                                    });
+
+                            CompanyJobListingModel joblist = new CompanyJobListingModel(job_position, starting_date, apply_before_date, minimum_qualification_required, job_requirement,job_description,job_type,experience_required, required_skills,  documentID);
                             companyJobListingList.add(joblist);
                         }
                         companyJobListingAdapter.notifyDataSetChanged();
@@ -342,6 +401,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 intent.putExtra("job_description", jl.getJob_description());
                 intent.putExtra("job_type", jl.getJob_type());
                 intent.putExtra("experience_required", jl.getExperience_required());
+                intent.putStringArrayListExtra("required_skills", jl.getRequired_skills());
                 startActivity(intent);
             }
         });
@@ -405,5 +465,48 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         companyJobListingAdapter.notifyItemRangeChanged(position, companyJobListingList.size());
     }
+
+    private void addSkillsToFirebase(String jobListingId){
+
+        for (int i = 0; i < selectedSkills.size(); i++) {
+            String skill = selectedSkills.get(i);
+
+            Log.d("SKILLSPRINT", "onSuccess: "+ skill);
+
+            Map<String, Object> skillData = new HashMap<>();
+            skillData.put("skill_name", skill);
+
+            db.collection("JobListing").document(jobListingId).collection("RequiredSkills")
+                    .add(skillData)
+                    .addOnSuccessListener(skillDocumentReference -> {
+                        Toast.makeText(HomeScreenActivity.this, "Job Listing Saved Successfully", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                    });
+        }
+
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    private void loadSkills() {
+        // Replace "SkillList" with your actual Firestore collection name
+        db.collection("SkillsList").get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                        String skillName = document.getString("skill_name");
+                        if (skillName != null) {
+                            SkillsModel skill = new SkillsModel(skillName);
+                            skills.add(skill);
+                        }
+                    }
+                    skillsAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    // Handle any errors while loading skills
+                });
+
+    }
+
 
 }
