@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:text="Applied Candidates"
+            android:textSize="28sp"
+            android:textColor="@color/darkgray"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/sf_pro_display_bold"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/blue"/>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/IVNoSavedJobs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVCandidateDetailsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"/>
+
+
+
+</LinearLayout>

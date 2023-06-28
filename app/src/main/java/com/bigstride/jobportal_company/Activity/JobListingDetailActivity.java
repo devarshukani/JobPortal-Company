@@ -2,23 +2,24 @@ package com.bigstride.jobportal_company.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bigstride.jobportal_company.Model.CompanyJobListingModel;
+import com.bigstride.jobportal_company.AppliedCandidateListActivity;
 import com.bigstride.jobportal_company.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class JobListingDetailActivity extends AppCompatActivity {
 
     TextView TVJobPosition, TVStartingDate, TVApplyBeforeDate, TVMinimumQualification, TVJobRequirement, TVJobDescription, TVJobType, TVExperienceRequired;
     ChipGroup TVRequiredSkills;
+    Button BTNAppliedCandidates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class JobListingDetailActivity extends AppCompatActivity {
         String job_type = getIntent().getStringExtra("job_type");
         String experience_required = getIntent().getStringExtra("experience_required");
         ArrayList<String> required_skills = getIntent().getStringArrayListExtra("required_skills");
+        String job_document_id = getIntent().getStringExtra("job_document_id");
 
         TVJobPosition = findViewById(R.id.TVJobPosition);
         TVStartingDate = findViewById(R.id.TVStartingDate);
@@ -44,6 +46,8 @@ public class JobListingDetailActivity extends AppCompatActivity {
         TVJobType = findViewById(R.id.TVJobType);
         TVExperienceRequired = findViewById(R.id.TVExperienceRequired);
         TVRequiredSkills = findViewById(R.id.TVRequiredSkills);
+
+        BTNAppliedCandidates = findViewById(R.id.BTNAppliedCandidates);
 
         for (String skill : required_skills) {
             Chip chip = new Chip(this);
@@ -62,6 +66,16 @@ public class JobListingDetailActivity extends AppCompatActivity {
         TVJobDescription.setText(job_description);
         TVJobType.setText(job_type);
         TVExperienceRequired.setText(experience_required.equals("1") || experience_required.equals("0") ? experience_required +" Year": experience_required +" Years");
+
+
+        BTNAppliedCandidates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(JobListingDetailActivity.this, AppliedCandidateListActivity.class);
+                intent.putExtra("job_document_id", job_document_id);
+                startActivity(intent);
+            }
+        });
 
 
 

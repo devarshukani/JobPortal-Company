@@ -402,6 +402,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 intent.putExtra("job_type", jl.getJob_type());
                 intent.putExtra("experience_required", jl.getExperience_required());
                 intent.putStringArrayListExtra("required_skills", jl.getRequired_skills());
+                intent.putExtra("job_document_id", jl.getDocument_id());
                 startActivity(intent);
             }
         });

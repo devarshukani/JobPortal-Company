@@ -1,0 +1,46 @@
+<!-- item_education_details.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/button_secondary_background"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:id="@+id/candidateNameTextViewCD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:text="Candidate Name"/>
+
+    <TextView
+        android:id="@+id/candidateContactTextViewCD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="Candidate Contact"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/candidateEmailTextViewCD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="Candidate Email"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

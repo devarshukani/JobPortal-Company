@@ -1,245 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/white">
 
-        <TextView
-            android:id="@+id/TVJobPosition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sf_pro_display_bold"
-            android:text="Job Position"
-            android:textColor="@color/darkgray"
-            android:textSize="24sp" />
-
-
         <LinearLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:background="@color/white">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_secondary_background"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginRight="10dp">
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="Job Title"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="Experience"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
-
-                <TextView
-                    android:id="@+id/TVExperienceRequired"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_bold"
-                    android:text="Date"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
-            </LinearLayout>
-
+            <TextView
+                android:id="@+id/TVJobPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Job Position"
+                android:textColor="@color/darkgray"
+                android:textSize="24sp"/>
 
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_secondary_background"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginLeft="10dp">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
 
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="Job Type"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary_background"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_marginRight="10dp">
 
-                <TextView
-                    android:id="@+id/TVJobType"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:text="Experience"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/TVExperienceRequired"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:text="Date"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_bold"
-                    android:text="Date"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary_background"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:text="Job Type"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/TVJobType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:text="Date"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary_background"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:text="Apply Before"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/TVApplyBeforeDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:text="Date"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_secondary_background"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_regular"
+                        android:text="Joining Date"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/TVStartingDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:text="Date"
+                        android:textColor="@color/darkgray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Minimum Required Qualification"
+                android:textColor="@color/darkgray"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/TVMinimumQualification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="Min Quali"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Required Skills"
+                android:textColor="@color/darkgray"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/TVRequiredSkills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Aditional Requirements"
+                android:textColor="@color/darkgray"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/TVJobRequirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="more req"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Job Description"
+                android:textColor="@color/darkgray"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/TVJobDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="JD"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"/>
+
+
+
+
 
 
         </LinearLayout>
 
 
-        <LinearLayout
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgray"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/BTNAppliedCandidates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_secondary_background"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="Apply Before"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
-
-                <TextView
-                    android:id="@+id/TVApplyBeforeDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_bold"
-                    android:text="Date"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/button_secondary_background"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginLeft="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_regular"
-                    android:text="Joining Date"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
-
-                <TextView
-                    android:id="@+id/TVStartingDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display_bold"
-                    android:text="Date"
-                    android:textColor="@color/darkgray"
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
-            </LinearLayout>
-
-
-
-
-
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:elevation="0dp"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:text="Minimum Required Qualification"
-            android:textColor="@color/darkgray"
-            android:textSize="20sp"
+            android:padding="18dp"
+            android:stateListAnimator="@null"
+            android:text="View Applied Candidates"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
             android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/TVMinimumQualification"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_regular"
-            android:text="Min Quali"
-            android:textColor="@color/darkgray"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_bold"
-            android:text="Required Skills"
-            android:textColor="@color/darkgray"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"/>
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/TVRequiredSkills"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_bold"
-            android:text="Aditional Requirements"
-            android:textColor="@color/darkgray"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/TVJobRequirement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_regular"
-            android:text="more req"
-            android:textColor="@color/darkgray"
-            android:textSize="18sp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_bold"
-            android:text="Job Description"
-            android:textColor="@color/darkgray"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/TVJobDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_regular"
-            android:text="JD"
-            android:textColor="@color/darkgray"
-            android:textSize="18sp"/>
-
-
-
-
 
 
     </LinearLayout>
 
+</LinearLayout>
 
-</ScrollView>
+
+
