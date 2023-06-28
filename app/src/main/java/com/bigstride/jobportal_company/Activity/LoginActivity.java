@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,18 +79,21 @@ public class LoginActivity extends AppCompatActivity {
                                                             editor.putString("userId", userId);
                                                             editor.apply();
 
+                                                            view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                                                             Intent intent = new Intent(LoginActivity.this, HomeScreenActivity.class);
                                                             startActivity(intent);
                                                             LoginActivity.this.finish();
                                                         }
                                                         else{
                                                             Toast.makeText(LoginActivity.this, "User Type is not valid", Toast.LENGTH_SHORT).show();
+                                                            view.performHapticFeedback(HapticFeedbackConstants.REJECT);
                                                         }
 
 
                                                     } else {
 //                                                        Log.d("Error", "Document does not exist");
                                                         Toast.makeText(LoginActivity.this, "User Type is not valid", Toast.LENGTH_SHORT).show();
+                                                        view.performHapticFeedback(HapticFeedbackConstants.REJECT);
                                                     }
                                                 }
                                             })
@@ -97,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
                                                     Log.w("Error", "Error getting document", e);
+                                                    view.performHapticFeedback(HapticFeedbackConstants.REJECT);
                                                 }
                                             });
 
@@ -142,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
         TVregisterLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();

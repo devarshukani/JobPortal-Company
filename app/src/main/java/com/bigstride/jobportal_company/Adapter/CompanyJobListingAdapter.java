@@ -1,5 +1,6 @@
 package com.bigstride.jobportal_company.Adapter;
 
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class CompanyJobListingAdapter extends RecyclerView.Adapter<CompanyJobLis
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION && itemClickListener != null) {
                         itemClickListener.onItemClick(position);

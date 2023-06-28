@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 auth.getCurrentUser().sendEmailVerification();
+                                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
 
                                 Toast.makeText(RegisterActivity.this, "verification link has been sent on your mail", Toast.LENGTH_LONG).show();
 
@@ -108,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             } else {
                                 Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                view.performHapticFeedback(HapticFeedbackConstants.REJECT);
                             }
                         }
 
@@ -122,6 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
         TVloginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

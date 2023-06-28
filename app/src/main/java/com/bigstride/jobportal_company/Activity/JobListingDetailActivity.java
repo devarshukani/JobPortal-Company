@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bigstride.jobportal_company.AppliedCandidateListActivity;
 import com.bigstride.jobportal_company.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -71,6 +71,7 @@ public class JobListingDetailActivity extends AppCompatActivity {
         BTNAppliedCandidates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 Intent intent = new Intent(JobListingDetailActivity.this, AppliedCandidateListActivity.class);
                 intent.putExtra("job_document_id", job_document_id);
                 startActivity(intent);

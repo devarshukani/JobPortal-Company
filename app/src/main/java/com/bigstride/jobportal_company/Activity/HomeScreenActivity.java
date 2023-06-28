@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -86,6 +87,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeScreenActivity.this, ProfileActivity.class);
                 startActivity(intent);
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
             }
         });
 
@@ -93,6 +95,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         FABAddJobListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 showAddJobListingSheet();
             }
         });
@@ -267,6 +270,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                     ETJobDescription.setError("Job Description cannot be Empty");
                 }
                 else {
+                    bottomSheetDialog.hide();
 
                     db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
                             .get()
@@ -293,6 +297,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                                         db.collection("JobListing")
                                                 .add(userEducationDetails)
                                                 .addOnSuccessListener(documentReference -> {
+                                                    view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                                                     String jobListingId = documentReference.getId();
 
                                                     addSkillsToFirebase(jobListingId);
@@ -302,6 +307,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                                                     bottomSheetDialog.hide();
                                                 })
                                                 .addOnFailureListener(e -> {
+                                                    view.performHapticFeedback(HapticFeedbackConstants.REJECT);
                                                     Log.w("Error", "Error adding document", e);
                                                     Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                                                 });
@@ -421,6 +427,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 BTNDialogCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        v.performHapticFeedback(HapticFeedbackConstants.REJECT);
                         dialog.dismiss();
                     }
                 });
@@ -428,6 +435,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 BTNDialogDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                         deleteJobListing(position);
                         dialog.dismiss();
                     }

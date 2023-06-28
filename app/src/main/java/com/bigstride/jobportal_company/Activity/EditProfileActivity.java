@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -80,6 +81,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                 public void onSuccess(Void unused) {
 
                                     Toast.makeText(EditProfileActivity.this, "Company Details Saved Successfully", Toast.LENGTH_SHORT).show();
+                                    view.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -87,6 +89,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e) {
                                     Log.w("Error", "Error adding document", e);
                                     Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                                    view.performHapticFeedback(HapticFeedbackConstants.REJECT);
                                 }
                             });
                 }
