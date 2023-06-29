@@ -149,6 +149,7 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
                 CandidateDetailsModel cp = candidateDetailsList.get(position);
                 Intent intent = new Intent(AppliedCandidateListActivity.this, CandidateProfileActivity.class);
 
+                intent.putExtra("job_document_id", job_document_id);
                 intent.putExtra("user_id", cp.getUser_id());
                 intent.putExtra("full_name", cp.getFull_name());
                 intent.putExtra("date_of_birth", cp.getDate_of_birth());
