@@ -146,23 +146,19 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
 
-//                ApplicationStatusModel jl = applicationStatusList.get(position);
-//                Intent intent = new Intent(getContext(), JobListingDetailActivity.class);
-//
-//                intent.putExtra("job_position", jl.getJob_position());
-//                intent.putExtra("starting_date", jl.getStarting_date());
-//                intent.putExtra("apply_before_date", jl.getApply_before_date());
-//                intent.putExtra("minimum_qualification_required", jl.getMinimum_qualification_required());
-//                intent.putExtra("job_requirement", jl.getJob_requirement());
-//                intent.putExtra("job_description", jl.getJob_description());
-//                intent.putExtra("job_type", jl.getJob_type());
-//                intent.putExtra("experience_required", jl.getExperience_required());
-//                intent.putStringArrayListExtra("required_skills", jl.getRequired_skills());
-//                intent.putExtra("company_name", jl.getCompany_name());
-//                intent.putExtra("company_id", jl.getCompany_id());
-//                intent.putExtra("document_id", jl.getDocument_id());
+                CandidateDetailsModel cp = candidateDetailsList.get(position);
+                Intent intent = new Intent(AppliedCandidateListActivity.this, CandidateProfileActivity.class);
 
-//                startActivity(intent);
+                intent.putExtra("user_id", cp.getUser_id());
+                intent.putExtra("full_name", cp.getFull_name());
+                intent.putExtra("date_of_birth", cp.getDate_of_birth());
+                intent.putExtra("gender", cp.getGender());
+                intent.putExtra("contact_no", cp.getContact_no());
+                intent.putExtra("email", cp.getEmail());
+                intent.putExtra("summary", cp.getSummary());
+                intent.putExtra("address", cp.getAddress());
+
+                startActivity(intent);
             }
         });
 

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.CandidateProfileActivity"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/userIDTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="userIDTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/fullNameTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="fullNameTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/dateOfBirthTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="dateOfBirthTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/genderTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="genderTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/contactNoTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="contactNoTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+    android:id="@+id/emailTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="emailTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/summaryTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="summaryTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+    <TextView
+        android:id="@+id/addressTextViewCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:text="addressTextViewCP"
+        android:layout_marginTop="20dp"/>
+
+
+</LinearLayout>
