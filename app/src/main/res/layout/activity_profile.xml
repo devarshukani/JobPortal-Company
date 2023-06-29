@@ -40,6 +40,7 @@
 
 
     <ImageView
+        android:id="@+id/IVCompanyLogo"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_marginTop="20dp"
@@ -48,13 +49,53 @@
     <TextView
         android:id="@+id/TVEmailOrUserName"
         android:text="User Name "
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textColor="@color/darkgray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:fontFamily="@font/sf_pro_display_regular"
         android:textStyle="bold"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_secondary_background"
+        android:elevation="0dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:padding="18dp"
+        android:stateListAnimator="@null"
+        android:text="Settings"
+        android:textAllCaps="false"
+        android:textColor="@color/darkgray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:drawableStart="@drawable/ic_settings"
+        android:drawablePadding="10dp"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNHelpAndFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_secondary_background"
+        android:elevation="0dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:padding="18dp"
+        android:stateListAnimator="@null"
+        android:text="Help and Feedback"
+        android:textAllCaps="false"
+        android:textColor="@color/darkgray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:drawableStart="@drawable/ic_help_and_feedback"
+        android:drawablePadding="10dp"/>
 
 
 
@@ -74,6 +115,11 @@
         android:textAllCaps="false"
         android:textColor="#CD2B49"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:drawableStart="@drawable/ic_logout"
+        android:drawablePadding="10dp"/>
+
+
 
 </LinearLayout>
