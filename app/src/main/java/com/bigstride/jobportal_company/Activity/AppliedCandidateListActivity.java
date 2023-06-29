@@ -55,7 +55,7 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
 
         RVCandidateDetailsList.setLayoutManager(new LinearLayoutManager(this));
         candidateDetailsList = new ArrayList<>();
-        candidateDetailsAdapter = new CandidateDetailsAdapter(candidateDetailsList);
+        candidateDetailsAdapter = new CandidateDetailsAdapter(candidateDetailsList, this);
         RVCandidateDetailsList.setAdapter(candidateDetailsAdapter);
 
         RVCandidateDetailsList.setAdapter(candidateDetailsAdapter);

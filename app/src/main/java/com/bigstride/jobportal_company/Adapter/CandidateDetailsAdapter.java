@@ -1,15 +1,24 @@
 package com.bigstride.jobportal_company.Adapter;
 
+import android.net.Uri;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigstride.jobportal_company.Model.CandidateDetailsModel;
 import com.bigstride.jobportal_company.R;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.List;
 
 public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetailsAdapter.ViewHolder> {
@@ -17,6 +26,7 @@ public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetai
     private List<CandidateDetailsModel> candidateDetailsList;
     private OnItemClickListener itemClickListener;
     private OnItemLongClickListener itemLongClickListener;
+    private android.content.Context context;
 
     public interface OnItemClickListener {
         void onItemClick(int position);
@@ -34,8 +44,9 @@ public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetai
         this.itemLongClickListener = listener;
     }
 
-    public CandidateDetailsAdapter(List<CandidateDetailsModel> candidateDetailsList) {
+    public CandidateDetailsAdapter(List<CandidateDetailsModel> candidateDetailsList, android.content.Context context) {
         this.candidateDetailsList = candidateDetailsList;
+        this.context = context;
     }
 
     @NonNull
@@ -52,6 +63,28 @@ public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetai
         holder.candidateNameTextViewCD.setText(candidateDetails.getFull_name());
         holder.candidateContactTextViewCD.setText(candidateDetails.getContact_no());
         holder.candidateEmailTextViewCD.setText(candidateDetails.getEmail());
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
+        StorageReference imageRef = storageRef.child("ProfileImage/" + candidateDetails.getUser_id() + ".png");
+
+
+        imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri downloadUrl) {
+                Glide.with(context)
+                        .load(downloadUrl)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(holder.candidatePhotoImageViewCD);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle the failure to retrieve the image
+            }
+        });
+
+
     }
 
     @Override
@@ -63,12 +96,14 @@ public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetai
         TextView candidateNameTextViewCD;
         TextView candidateContactTextViewCD;
         TextView candidateEmailTextViewCD;
+        ImageView candidatePhotoImageViewCD;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             candidateNameTextViewCD = itemView.findViewById(R.id.candidateNameTextViewCD);
             candidateContactTextViewCD = itemView.findViewById(R.id.candidateContactTextViewCD);
             candidateEmailTextViewCD = itemView.findViewById(R.id.candidateEmailTextViewCD);
+            candidatePhotoImageViewCD = itemView.findViewById(R.id.candidatePhotoImageViewCD);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

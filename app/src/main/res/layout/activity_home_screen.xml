@@ -12,7 +12,7 @@
         android:id="@+id/IVCompanyProfile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_profile_photo"
+        android:src="@drawable/ic_default_company_logo"
         android:layout_gravity="end"/>
 
     <EditText
