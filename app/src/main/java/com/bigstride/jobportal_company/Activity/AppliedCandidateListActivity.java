@@ -68,7 +68,7 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-c
+        
         String job_document_id = getIntent().getStringExtra("job_document_id");
         progressBar.setVisibility(View.VISIBLE);
         loadJobListingData(job_document_id);
