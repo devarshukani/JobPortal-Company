@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -18,6 +19,7 @@ import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bigstride.jobportal_company.R;
@@ -30,6 +32,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class ProfileActivity extends AppCompatActivity {
 
     TextView TVEmailOrUserName;
@@ -37,6 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
     ImageView IVEditProfile, IVCompanyLogo;
     FirebaseAuth auth;
     private Uri selectedImageUri;
+
+    ProgressBar progressBar;
     private ActivityResultLauncher<Intent> imagePickerLauncher;
 
     @Override
@@ -48,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         BTNlogoutButton = findViewById(R.id.BTNlogoutButton);
         IVEditProfile = findViewById(R.id.IVEditProfile);
         IVCompanyLogo = findViewById(R.id.IVCompanyLogo);
+        progressBar = findViewById(R.id.progressBar);
 
         auth = FirebaseAuth.getInstance();
 
@@ -126,31 +135,84 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    private void uploadImageToStorage(Uri imageUri) {
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference imageRef = storageRef.child("ProfileImage/" + auth.getCurrentUser().getUid() + ".png");
+//    private void uploadImageToStorage(Uri imageUri) {
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReference();
+//        StorageReference imageRef = storageRef.child("ProfileImage/" + auth.getCurrentUser().getUid() + ".png");
+//
+//        UploadTask uploadTask = imageRef.putFile(imageUri);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                // Image uploaded successfully. You can store the image URL or download URL in the user's profile.
+//                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                    @Override
+//                    public void onSuccess(Uri downloadUrl) {
+//                        updatePhoto();
+//                        // Save the download URL to the user's profile in Firebase Authentication or a separate user database.
+//                    }
+//                });
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                // Handle the image upload failure.
+//            }
+//        });
+//    }
 
-        UploadTask uploadTask = imageRef.putFile(imageUri);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // Image uploaded successfully. You can store the image URL or download URL in the user's profile.
-                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri downloadUrl) {
-                        updatePhoto();
-                        // Save the download URL to the user's profile in Firebase Authentication or a separate user database.
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                // Handle the image upload failure.
-            }
-        });
+    private void uploadImageToStorage(Uri imageUri) {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+
+            // Calculate the desired dimensions for the compressed image
+            int maxWidth = 256; // Maximum width of the compressed image
+            int maxHeight = 256; // Maximum height of the compressed image
+            int originalWidth = bitmap.getWidth();
+            int originalHeight = bitmap.getHeight();
+
+            // Calculate the scale factor to resize the image while maintaining aspect ratio
+            float scaleFactor = Math.min(((float) maxWidth / originalWidth), ((float) maxHeight / originalHeight));
+
+            // Resize the bitmap
+            int scaledWidth = Math.round(originalWidth * scaleFactor);
+            int scaledHeight = Math.round(originalHeight * scaleFactor);
+            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, true);
+
+            // Compress the resized bitmap
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+
+            byte[] imageData = baos.toByteArray();
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference imageRef = storageRef.child("ProfileImage/" + auth.getCurrentUser().getUid() + ".png");
+
+            UploadTask uploadTask = imageRef.putBytes(imageData);
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // Image uploaded successfully. You can store the image URL or download URL in the user's profile.
+                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri downloadUrl) {
+                            updatePhoto();
+                            // Save the download URL to the user's profile in Firebase Authentication or a separate user database.
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Handle the image upload failure.
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     void updatePhoto(){
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -165,11 +227,13 @@ public class ProfileActivity extends AppCompatActivity {
                         .load(downloadUrl)
                         .apply(RequestOptions.circleCropTransform())
                         .into(IVCompanyLogo);
+                progressBar.setVisibility(View.GONE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to retrieve the image
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
