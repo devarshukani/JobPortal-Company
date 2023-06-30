@@ -9,8 +9,9 @@ public class CandidateDetailsModel {
     String email;
     String summary;
     String address;
+    String application_status;
 
-    public CandidateDetailsModel(String user_id, String full_name,String date_of_birth,  String gender, String contact_no, String email, String summary, String address) {
+    public CandidateDetailsModel(String user_id, String full_name,String date_of_birth,  String gender, String contact_no, String email, String summary, String address, String application_status) {
         this.user_id = user_id;
         this.full_name = full_name;
         this.date_of_birth = date_of_birth;
@@ -19,6 +20,7 @@ public class CandidateDetailsModel {
         this.email = email;
         this.summary = summary;
         this.address = address;
+        this.application_status = application_status;
     }
 
     public String getUser_id() {
@@ -51,5 +53,9 @@ public class CandidateDetailsModel {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getApplication_status() {
+        return application_status;
     }
 }

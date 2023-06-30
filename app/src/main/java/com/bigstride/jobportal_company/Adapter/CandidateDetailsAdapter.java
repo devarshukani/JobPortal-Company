@@ -61,8 +61,7 @@ public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetai
         CandidateDetailsModel candidateDetails = candidateDetailsList.get(position);
 
         holder.candidateNameTextViewCD.setText(candidateDetails.getFull_name());
-        holder.candidateContactTextViewCD.setText(candidateDetails.getContact_no());
-        holder.candidateEmailTextViewCD.setText(candidateDetails.getEmail());
+        holder.candidateStatusTextViewCD.setText(candidateDetails.getApplication_status());
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
@@ -94,15 +93,13 @@ public class CandidateDetailsAdapter extends RecyclerView.Adapter<CandidateDetai
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView candidateNameTextViewCD;
-        TextView candidateContactTextViewCD;
-        TextView candidateEmailTextViewCD;
+        TextView candidateStatusTextViewCD;
         ImageView candidatePhotoImageViewCD;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             candidateNameTextViewCD = itemView.findViewById(R.id.candidateNameTextViewCD);
-            candidateContactTextViewCD = itemView.findViewById(R.id.candidateContactTextViewCD);
-            candidateEmailTextViewCD = itemView.findViewById(R.id.candidateEmailTextViewCD);
+            candidateStatusTextViewCD = itemView.findViewById(R.id.candidateStatusTextViewCD);
             candidatePhotoImageViewCD = itemView.findViewById(R.id.candidatePhotoImageViewCD);
 
             itemView.setOnClickListener(new View.OnClickListener() {

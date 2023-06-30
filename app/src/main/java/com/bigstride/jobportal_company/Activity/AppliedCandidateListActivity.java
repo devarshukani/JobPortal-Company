@@ -61,12 +61,14 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
         RVCandidateDetailsList.setAdapter(candidateDetailsAdapter);
 
 
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+c
         String job_document_id = getIntent().getStringExtra("job_document_id");
         progressBar.setVisibility(View.VISIBLE);
         loadJobListingData(job_document_id);
@@ -88,6 +90,7 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
                         else{
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                 String candidate_user_id = document.getString("candidate_user_id");
+                                String application_status = document.getString("application_status");
 
                                 db.collection("CandidateProfileDetails").document(candidate_user_id)
                                         .get()
@@ -108,7 +111,7 @@ public class AppliedCandidateListActivity extends AppCompatActivity {
 
 
 
-                                                    CandidateDetailsModel candidate = new CandidateDetailsModel(user_id, full_name, date_of_birth, gender, contact_no, email, summary, address);
+                                                    CandidateDetailsModel candidate = new CandidateDetailsModel(user_id, full_name, date_of_birth, gender, contact_no, email, summary, address, application_status);
                                                     candidateDetailsList.add(candidate);
 
                                                     // Notify the adapter after all data is added
