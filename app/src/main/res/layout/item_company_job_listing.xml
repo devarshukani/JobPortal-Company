@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="@font/sf_pro_display_bold"/>
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,14 +35,16 @@
                 android:text="Joining Date "
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/sf_pro_display_regular" />
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/darkgray"/>
 
             <TextView
                 android:id="@+id/startingDateTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:fontFamily="@font/sf_pro_display_regular"/>
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/darkgray"/>
 
         </LinearLayout>
 
@@ -58,14 +61,16 @@
                 android:text="Apply Before"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/sf_pro_display_regular"/>
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/darkgray"/>
 
             <TextView
                 android:id="@+id/applyBeforeDateTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:fontFamily="@font/sf_pro_display_regular"/>
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:textColor="@color/darkgray"/>
 
         </LinearLayout>
 

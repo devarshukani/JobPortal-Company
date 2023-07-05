@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="Job Position"
-                android:textColor="@color/darkgray"
+                android:textColor="@color/black"
                 android:textSize="24sp"/>
 
 
@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display_bold"
                         android:text="Date"
-                        android:textColor="@color/darkgray"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textAlignment="center"/>
                 </LinearLayout>
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display_bold"
                         android:text="Date"
-                        android:textColor="@color/darkgray"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textAlignment="center"/>
                 </LinearLayout>
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display_bold"
                         android:text="Date"
-                        android:textColor="@color/darkgray"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textAlignment="center"/>
                 </LinearLayout>
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display_bold"
                         android:text="Date"
-                        android:textColor="@color/darkgray"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textAlignment="center"/>
                 </LinearLayout>
@@ -185,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="Minimum Required Qualification"
-                android:textColor="@color/darkgray"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"/>
 
@@ -203,14 +203,14 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="Required Skills"
-                android:textColor="@color/darkgray"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"/>
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/TVRequiredSkills"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
 
             <TextView
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="Aditional Requirements"
-                android:textColor="@color/darkgray"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"/>
 
@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_display_bold"
                 android:text="Job Description"
-                android:textColor="@color/darkgray"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"/>
 

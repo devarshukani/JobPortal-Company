@@ -30,7 +30,7 @@
             android:id="@+id/TVProfileTitle"
             android:text="Profile"
             android:textSize="28sp"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -44,7 +44,8 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_edit"
             android:background="@drawable/button_secondary_background"
-            android:padding="7dp"/>
+            android:padding="7dp"
+            app:tint="@color/darkgray" />
 
     </LinearLayout>
 
@@ -57,9 +58,20 @@
         android:src="@drawable/ic_default_company_logo" />
 
     <TextView
-        android:id="@+id/TVEmailOrUserName"
-        android:text="User Name "
-        android:textSize="20sp"
+        android:id="@+id/TVCompanyProfile"
+        android:text="Company Name "
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/TVEmailProfile"
+        android:text="Email "
+        android:textSize="18sp"
         android:textColor="@color/darkgray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,12 +79,81 @@
         android:fontFamily="@font/sf_pro_display_regular"
         android:textStyle="bold"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_secondary_background"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="Job Listed"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/TVJobListedProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Count"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_secondary_background"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_regular"
+                android:text="Available Listing"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/TVAvailableListingProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:text="Count"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/BTNPackagesOffers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_yellow_background"
         android:elevation="0dp"
         android:fontFamily="@font/sf_pro_display_bold"
@@ -80,7 +161,7 @@
         android:stateListAnimator="@null"
         android:text="@string/packages_offers"
         android:textAllCaps="false"
-        android:textColor="@color/darkgray"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -97,7 +178,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/button_secondary_background"
         android:elevation="0dp"
-        android:fontFamily="@font/sf_pro_display_bold"
+        android:fontFamily="@font/sf_pro_display_regular"
         android:padding="18dp"
         android:stateListAnimator="@null"
         android:text="Settings"
@@ -107,7 +188,8 @@
         android:textStyle="bold"
         android:textAlignment="textStart"
         android:drawableStart="@drawable/ic_settings"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/darkgray"/>
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -117,7 +199,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/button_secondary_background"
         android:elevation="0dp"
-        android:fontFamily="@font/sf_pro_display_bold"
+        android:fontFamily="@font/sf_pro_display_regular"
         android:padding="18dp"
         android:stateListAnimator="@null"
         android:text="Help and Feedback"
@@ -127,7 +209,8 @@
         android:textStyle="bold"
         android:textAlignment="textStart"
         android:drawableStart="@drawable/ic_help_and_feedback"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/darkgray"/>
 
 
 
@@ -140,17 +223,18 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/button_secondary_background"
         android:elevation="0dp"
-        android:fontFamily="@font/sf_pro_display_bold"
+        android:fontFamily="@font/sf_pro_display_regular"
         android:padding="18dp"
         android:stateListAnimator="@null"
         android:text="Logout"
         android:textAllCaps="false"
-        android:textColor="#CD2B49"
+        android:textColor="@color/red"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAlignment="textStart"
         android:drawableStart="@drawable/ic_logout"
-        android:drawablePadding="10dp"/>
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/red"/>
 
 
 

@@ -28,7 +28,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:fontFamily="@font/sf_pro_display_bold"
-            android:text="Candidate Contact"/>
+            android:text="Candidate Contact"
+            android:textColor="@color/black"/>
 
 
 
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:fontFamily="@font/sf_pro_display_regular"
-                android:text="Candidate Application Status"/>
+                android:text="Candidate Application Status"
+                android:textColor="@color/darkgray"/>
 
 
         </LinearLayout>

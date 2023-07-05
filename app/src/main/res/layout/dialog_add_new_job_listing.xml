@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:background="@color/white">
 
         <TextView
             android:layout_width="wrap_content"
@@ -17,7 +18,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/sf_pro_display_bold"
             android:text="New Job Listing"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <TextView
@@ -26,7 +27,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Job Position"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 
@@ -61,7 +62,7 @@
                     android:fontFamily="@font/sf_pro_display_regular"
                     android:textStyle="bold"
                     android:text="Joining Date"
-                    android:textColor="@color/darkgray"
+                    android:textColor="@color/black"
                     android:layout_marginTop="16dp"
                     android:textSize="18sp" />
 
@@ -122,7 +123,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Minimum Qualification Required"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 
@@ -142,7 +143,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Job Type"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 
@@ -162,7 +163,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Required Experience"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 
@@ -187,7 +188,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Required Skills"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 
@@ -200,7 +201,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/skillsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="250dp"
+            android:background="@drawable/button_secondary_background"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -208,7 +210,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Job Requirement"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 
@@ -230,7 +232,7 @@
             android:fontFamily="@font/sf_pro_display_regular"
             android:textStyle="bold"
             android:text="Job Description"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:textSize="18sp" />
 

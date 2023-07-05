@@ -2,19 +2,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/lightgray">
+    android:background="@drawable/button_secondary_background">
 
     <CheckBox
         android:id="@+id/skillCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/skillNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="8dp"
+        android:textColor="@color/darkgray" />
 
 </LinearLayout>

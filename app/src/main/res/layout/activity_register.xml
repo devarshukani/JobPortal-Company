@@ -12,7 +12,7 @@
         android:text="Company Register"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="@color/darkgray"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

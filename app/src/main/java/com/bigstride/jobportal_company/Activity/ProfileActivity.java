@@ -34,6 +34,8 @@ import com.github.kittinunf.fuel.core.Handler;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -50,10 +52,11 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView TVEmailOrUserName;
+    TextView TVEmailProfile, TVCompanyProfile;
     Button BTNlogoutButton, BTNPackagesOffers;
     ImageView IVEditProfile, IVCompanyLogo;
     FirebaseAuth auth;
+    FirebaseFirestore db;
     private Uri selectedImageUri;
 
     ProgressBar progressBar;
@@ -69,7 +72,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        TVEmailOrUserName = findViewById(R.id.TVEmailOrUserName);
+        TVCompanyProfile = findViewById(R.id.TVCompanyProfile);
+        TVEmailProfile = findViewById(R.id.TVEmailProfile);
         BTNlogoutButton = findViewById(R.id.BTNlogoutButton);
         IVEditProfile = findViewById(R.id.IVEditProfile);
         IVCompanyLogo = findViewById(R.id.IVCompanyLogo);
@@ -77,13 +81,16 @@ public class ProfileActivity extends AppCompatActivity {
         BTNPackagesOffers = findViewById(R.id.BTNPackagesOffers);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        TVEmailProfile.setText(auth.getCurrentUser().getEmail());
+
+        getProfileData();
 
         updatePhoto();
-
-        TVEmailOrUserName.setText(auth.getCurrentUser().getEmail());
-
-
-
 
         IVEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +101,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
-
-//        BTNGetPremium.setOnClickListener(view -> {
-//            getDetails();
-//        });
         BTNPackagesOffers.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("HandlerLeak")
             @Override
@@ -168,98 +170,23 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    void getDetails(){
-        Fuel.INSTANCE.post("https://us-central1-bigstride-cloudfunctions.cloudfunctions.net/createPaymentSheet", null).responseString(new Handler<String>() {
-            @Override
-            public void success(String s) {
-                try {
-                    final JSONObject result = new JSONObject(s);
-                    customerConfig = new PaymentSheet.CustomerConfiguration(
-                            result.getString("customer"),
-                            result.getString("ephemeralKey")
-                    );
-                    paymentIntentClientSecret = result.getString("paymentIntent");
-                    PaymentConfiguration.init(getApplicationContext(), result.getString("publishableKey"));
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try{
-                                showStripePaymentSheet();
-                            }
-                            catch (Exception e){
-                                Toast.makeText(ProfileActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                } catch (JSONException e) { /* handle error */ }
-            }
-
-            @Override
-            public void failure(@NonNull FuelError fuelError) {
-
-            }
-        });
-    }
-
-    void showStripePaymentSheet(){
-            final PaymentSheet.Configuration configuration = new PaymentSheet.Configuration.Builder("BigStride for Company")
-                    .customer(customerConfig)
-                    .allowsDelayedPaymentMethods(true)
-                    .build();
-            paymentSheet.presentWithPaymentIntent(
-                    paymentIntentClientSecret,
-                    configuration
-            );
-    }
-
-    void onPaymentSheetResult(final PaymentSheetResult paymentSheetResult) {
-        try{
-            if (paymentSheetResult instanceof PaymentSheetResult.Canceled) {
-                Log.d("STRIPE", "Canceled");
-                Toast.makeText(this, "Payment Canceled", Toast.LENGTH_SHORT).show();
-            } else if (paymentSheetResult instanceof PaymentSheetResult.Failed) {
-                Log.e("STRIPE", "Got error: ", ((PaymentSheetResult.Failed) paymentSheetResult).getError());
-                Toast.makeText(this, "Error :"+((PaymentSheetResult.Failed) paymentSheetResult).getError() , Toast.LENGTH_SHORT).show();
-            } else if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
-                // Display for example, an order confirmation screen
-                Log.d("STRIPE", "Completed");
-                Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
-            }
-        }
-        catch (Exception e){
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-        }
+    private void getProfileData() {
+        db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        TVCompanyProfile.setText(documentSnapshot.getString("company_name"));
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        TVCompanyProfile.setVisibility(View.GONE);
+                    }
+                });
 
     }
-
-
-//    private void uploadImageToStorage(Uri imageUri) {
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//        StorageReference storageRef = storage.getReference();
-//        StorageReference imageRef = storageRef.child("ProfileImage/" + auth.getCurrentUser().getUid() + ".png");
-//
-//        UploadTask uploadTask = imageRef.putFile(imageUri);
-//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                // Image uploaded successfully. You can store the image URL or download URL in the user's profile.
-//                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri downloadUrl) {
-//                        updatePhoto();
-//                        // Save the download URL to the user's profile in Firebase Authentication or a separate user database.
-//                    }
-//                });
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                // Handle the image upload failure.
-//            }
-//        });
-//    }
 
     private void uploadImageToStorage(Uri imageUri) {
         try {

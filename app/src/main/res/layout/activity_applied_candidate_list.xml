@@ -19,7 +19,7 @@
         <TextView
             android:text="Applied Candidates"
             android:textSize="28sp"
-            android:textColor="@color/darkgray"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
