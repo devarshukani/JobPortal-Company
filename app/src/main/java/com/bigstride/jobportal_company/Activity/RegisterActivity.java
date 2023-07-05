@@ -86,6 +86,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 Map<String, Object> userPersonalDetails = new HashMap<>();
                                 userPersonalDetails.put("user_type", "company");
+                                userPersonalDetails.put("job_listing", 0);
+                                userPersonalDetails.put("available_listings", 5);
 
                                 db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
                                         .set(userPersonalDetails)

@@ -1,5 +1,6 @@
 package com.bigstride.jobportal_company.Activity;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -66,6 +67,8 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     private RecyclerView skillsRecyclerView;
     private ChipGroup chipGroup;
+
+    int available_listing, job_listed;
 
     FirebaseAuth auth;
     FirebaseFirestore db;
@@ -242,6 +245,31 @@ public class HomeScreenActivity extends AppCompatActivity {
         BTNSaveJobListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        available_listing = documentSnapshot.getLong("available_listings").intValue();
+                                        job_listed = documentSnapshot.getLong("job_listed").intValue();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
+                    }
+                });
+
+
+
+
                 String jobPosition = ETJobPosition.getText().toString().trim();
                 String startingDate = ETStartingDate.getText().toString().trim();
                 String applyBeforeDate = ETApplyBeforeDate.getText().toString().trim();
@@ -251,7 +279,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                 String jobRequirement = ETJobRequirement.getText().toString().trim();
                 String jobDescription = ETJobDescription.getText().toString().trim();
 
-                if (jobPosition.isEmpty()) {
+                if(available_listing <= 0){
+                    Toast.makeText(HomeScreenActivity.this, "You Have used all your Job Listing, Purchase more to continue", Toast.LENGTH_SHORT).show();
+                }
+                else if (jobPosition.isEmpty()) {
                     ETJobPosition.setError("Job Position cannot be Empty");
                 }
                 else if (startingDate.isEmpty()) {
@@ -303,6 +334,13 @@ public class HomeScreenActivity extends AppCompatActivity {
                                                     addSkillsToFirebase(jobListingId);
 
                                                     loadJobListingData();
+
+                                                    Map<String, Object> companyProfileUpdate = new HashMap<>();
+                                                    companyProfileUpdate.put("job_listed", job_listed+1);
+                                                    companyProfileUpdate.put("available_listings", available_listing-1);
+
+                                                    db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
+                                                                    .update(companyProfileUpdate);
 
                                                     bottomSheetDialog.hide();
                                                 })
@@ -457,6 +495,12 @@ public class HomeScreenActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+
+                        Map<String, Object> companyProfileUpdate = new HashMap<>();
+                        companyProfileUpdate.put("job_listed", job_listed-1);
+
+                        db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
+                                .update(companyProfileUpdate);
 
                         Toast.makeText(HomeScreenActivity.this, "Job Listing deleted.", Toast.LENGTH_SHORT).show();
                     }

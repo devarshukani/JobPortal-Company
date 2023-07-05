@@ -52,7 +52,7 @@ import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView TVEmailProfile, TVCompanyProfile;
+    TextView TVEmailProfile, TVCompanyProfile, TVJobListedProfile, TVAvailableListingProfile;
     Button BTNlogoutButton, BTNPackagesOffers;
     ImageView IVEditProfile, IVCompanyLogo;
     FirebaseAuth auth;
@@ -79,6 +79,9 @@ public class ProfileActivity extends AppCompatActivity {
         IVCompanyLogo = findViewById(R.id.IVCompanyLogo);
         progressBar = findViewById(R.id.progressBar);
         BTNPackagesOffers = findViewById(R.id.BTNPackagesOffers);
+
+        TVJobListedProfile = findViewById(R.id.TVJobListedProfile);
+        TVAvailableListingProfile = findViewById(R.id.TVAvailableListingProfile);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -177,6 +180,8 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         TVCompanyProfile.setText(documentSnapshot.getString("company_name"));
+                        TVJobListedProfile.setText(String.valueOf(documentSnapshot.getLong("job_listed").intValue()));
+                        TVAvailableListingProfile.setText(String.valueOf(documentSnapshot.getLong("available_listings").intValue()));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
