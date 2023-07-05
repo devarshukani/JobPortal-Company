@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Big Stride for Company</string>
+    <string name="packages_offers"><![CDATA[Packages & Offers]]></string>
 </resources>

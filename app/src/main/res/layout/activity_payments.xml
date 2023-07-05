@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PaymentsActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNGetRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#7BDDB204"
+        android:elevation="0dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:padding="18dp"
+        android:stateListAnimator="@null"
+        android:text="Get Regular 10 PHP"
+        android:textAllCaps="false"
+        android:textColor="@color/darkgray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNGetPremium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="#7BDDB204"
+        android:elevation="0dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:padding="18dp"
+        android:stateListAnimator="@null"
+        android:text="Get Premium 30 PHP"
+        android:textAllCaps="false"
+        android:textColor="@color/darkgray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+
+</LinearLayout>

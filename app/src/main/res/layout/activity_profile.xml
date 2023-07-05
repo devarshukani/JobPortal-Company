@@ -7,6 +7,7 @@
     android:padding="20dp">
 
     <ProgressBar
+        android:visibility="gone"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -68,10 +69,32 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/BTNSettings"
+        android:id="@+id/BTNPackagesOffers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@drawable/button_yellow_background"
+        android:elevation="0dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:padding="22dp"
+        android:stateListAnimator="@null"
+        android:text="@string/packages_offers"
+        android:textAllCaps="false"
+        android:textColor="@color/darkgray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:elevation="0dp"/>
+
+
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/BTNSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_secondary_background"
         android:elevation="0dp"
         android:fontFamily="@font/sf_pro_display_bold"
