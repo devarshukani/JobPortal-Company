@@ -202,7 +202,7 @@
             android:id="@+id/skillsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@drawable/button_secondary_background"/>
+            android:background="@drawable/edit_text_background"/>
 
         <TextView
             android:layout_width="wrap_content"
