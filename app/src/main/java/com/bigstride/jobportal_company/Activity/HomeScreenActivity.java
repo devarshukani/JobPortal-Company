@@ -281,6 +281,9 @@ public class HomeScreenActivity extends AppCompatActivity {
 
                 if(available_listing <= 0){
                     Toast.makeText(HomeScreenActivity.this, "You Have used all your Job Listing, Purchase more to continue", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomeScreenActivity.this, PaymentsActivity.class);
+                    intent.putExtra("available_listings",String.valueOf(available_listing));
+                    startActivity(intent);
                 }
                 else if (jobPosition.isEmpty()) {
                     ETJobPosition.setError("Job Position cannot be Empty");
