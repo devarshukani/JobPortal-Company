@@ -11,12 +11,17 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bigstride.jobportal_company.R;
 import com.github.kittinunf.fuel.Fuel;
 import com.github.kittinunf.fuel.core.FuelError;
 import com.github.kittinunf.fuel.core.Handler;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.PaymentSession;
 import com.stripe.android.PaymentSessionConfig;
@@ -34,7 +39,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PaymentsActivity extends AppCompatActivity {
 
@@ -43,6 +50,12 @@ public class PaymentsActivity extends AppCompatActivity {
     PaymentSheet.CustomerConfiguration customerConfig;
 
     Button BTNGetRegular, BTNGetPremium;
+    ProgressBar progressBar;
+
+    FirebaseAuth auth;
+    FirebaseFirestore db;
+    int packagePressed = 0;
+    int available_listings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,20 +64,35 @@ public class PaymentsActivity extends AppCompatActivity {
 
         BTNGetRegular = findViewById(R.id.BTNGetRegular);
         BTNGetPremium = findViewById(R.id.BTNGetPremium);
+        progressBar = findViewById(R.id.progressBar);
+
+
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        available_listings = Integer.parseInt(getIntent().getStringExtra("available_listings"));
 
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
+
+
+
+
 
         BTNGetRegular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 getDetailsForRegular();
+
             }
         });
 
         BTNGetPremium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 getDetailsForPremium();
+
             }
         });
 
@@ -73,6 +101,7 @@ public class PaymentsActivity extends AppCompatActivity {
     }
 
     void getDetailsForRegular(){
+
         Fuel.INSTANCE.post("https://us-central1-bigstride-cloudfunctions.cloudfunctions.net/createPaymentSheet", null).responseString(new Handler<String>() {
             @Override
             public void success(String s) {
@@ -88,14 +117,14 @@ public class PaymentsActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try{
-                                showStripePaymentSheet();
-                            }
-                            catch (Exception e){
-                                Toast.makeText(PaymentsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                            }
+                            showStripePaymentSheet();
+                            packagePressed = 1;
+                            progressBar.setVisibility(View.GONE);
+
+
                         }
                     });
+
 
                 } catch (JSONException e) { /* handle error */ }
             }
@@ -123,12 +152,9 @@ public class PaymentsActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try{
-                                showStripePaymentSheet();
-                            }
-                            catch (Exception e){
-                                Toast.makeText(PaymentsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                            }
+                            showStripePaymentSheet();
+                            packagePressed = 2;
+                            progressBar.setVisibility(View.GONE);
                         }
                     });
 
@@ -143,7 +169,7 @@ public class PaymentsActivity extends AppCompatActivity {
     }
 
     void showStripePaymentSheet(){
-        final PaymentSheet.Configuration configuration = new PaymentSheet.Configuration.Builder("BigStride for Company")
+        final PaymentSheet.Configuration configuration = new PaymentSheet.Configuration.Builder("BigStride")
                 .customer(customerConfig)
                 .allowsDelayedPaymentMethods(true)
                 .build();
@@ -164,7 +190,33 @@ public class PaymentsActivity extends AppCompatActivity {
             } else if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
                 // Display for example, an order confirmation screen
                 Log.d("STRIPE", "Completed");
-                Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
+
+                int addNewListingCount = 0;
+                if(packagePressed == 1){
+                    addNewListingCount = 3;
+                }
+                else if(packagePressed == 2){
+                    addNewListingCount = 15;
+                }
+
+                Map<String, Object> availableListingsUpdate = new HashMap<>();
+                availableListingsUpdate.put("available_listings", available_listings + addNewListingCount);
+
+                db.collection("CompanyProfileDetails").document(auth.getCurrentUser().getUid())
+                        .update(availableListingsUpdate)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(PaymentsActivity.this, "Payment Successful", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override public void onFailure(@NonNull Exception e)
+                            {
+                                Toast.makeText(PaymentsActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
             }
         }
         catch (Exception e){

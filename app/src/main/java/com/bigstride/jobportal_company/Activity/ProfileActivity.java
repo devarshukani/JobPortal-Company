@@ -110,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(ProfileActivity.this, PaymentsActivity.class);
+                intent.putExtra("available_listings",TVAvailableListingProfile.getText());
                 startActivity(intent);
 
             }
