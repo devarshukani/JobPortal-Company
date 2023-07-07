@@ -13,6 +13,7 @@
     <color name="darkgray">#565A5E</color>
     <color name="blue">#0E7EBC</color>
     <color name="red">#CD2B49</color>
+    <color name="borderColor">#DEE2E6</color>
 
 
     <!--    <color name="gray">#727272</color>-->

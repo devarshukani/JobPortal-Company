@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -74,13 +75,10 @@ public class PaymentsActivity extends AppCompatActivity {
 
         paymentSheet = new PaymentSheet(this, this::onPaymentSheetResult);
 
-
-
-
-
         BTNGetRegular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 progressBar.setVisibility(View.VISIBLE);
                 getDetailsForRegular();
 
@@ -90,6 +88,7 @@ public class PaymentsActivity extends AppCompatActivity {
         BTNGetPremium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
                 progressBar.setVisibility(View.VISIBLE);
                 getDetailsForPremium();
 

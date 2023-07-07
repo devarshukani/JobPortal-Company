@@ -63,10 +63,6 @@ public class ProfileActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> imagePickerLauncher;
 
 
-    PaymentSheet paymentSheet;
-    String paymentIntentClientSecret;
-    PaymentSheet.CustomerConfiguration customerConfig;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
             @SuppressLint("HandlerLeak")
             @Override
             public void onClick(View v) {
+                v.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
 
                 Intent intent = new Intent(ProfileActivity.this, PaymentsActivity.class);
                 intent.putExtra("available_listings",TVAvailableListingProfile.getText());
